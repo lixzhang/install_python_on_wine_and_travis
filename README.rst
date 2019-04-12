@@ -49,9 +49,9 @@ Set up Wine Machine
 ===================
 
 you can set up as many Wine Machines as You want, with different settings, by selecting different WINEPREFIX
-the WINEPREFIX is the path to the Wine machine, defaults to /home/<user>/.wine
 
-You need to set the Architecture, default is 64 Bit :
+The WINEPREFIX is the path to the Wine machine, defaults to /home/<user>/.wine
+
 
 
 .. code-block:: bash
@@ -186,6 +186,8 @@ Running Commands
     export WINEPREFIX=${HOME}/wine/wine32_machine_01
     # test if it is working
     wine pip install --upgrade pip
+    # alternatively a one-liner, handy for Icons:
+    WINEPREFIX=${HOME}/wine/wine32_machine_01 wine pip install --upgrade pip
     # opening wineconsole
     wineconsole
 
@@ -196,6 +198,8 @@ Running Commands
     export WINEPREFIX=${HOME}/wine/wine64_machine_02
     # test if it is working
     wine pip install --upgrade pip
+    # alternatively a one-liner, handy for Icons:
+    WINEPREFIX=${HOME}/wine/wine64_machine_02 wine pip install --upgrade pip
     # opening wineconsole
     wineconsole
 
