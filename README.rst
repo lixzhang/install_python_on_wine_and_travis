@@ -29,6 +29,7 @@ Prerequisites when You install on Your local Machine:
 
 If You want to install on Travis, just copy the travis.yml and .sh Files to Your project directory, there should be no adoption needed on the yml file.
 
+
 Install WINE
 ============
 
