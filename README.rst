@@ -70,7 +70,7 @@ You need to set the Architecture, default is 64 Bit :
     install_wine_machine.sh
 
     #############################################
-    # Install Wine Machine 1 (64 Bit)
+    # Install Wine Machine 2 (64 Bit)
     #############################################
     # set Wine Prefix for Machine 2 (64 Bit)
     export WINEPREFIX=${HOME}/wine/wine64_machine_02
@@ -163,7 +163,7 @@ Install GIT on WINE
     install_wine_git_portable.sh
 
     #############################################
-    # install Git 64 Bit Version on Machine 1
+    # install Git 64 Bit Version on Machine 2
     #############################################
     # set Wine Prefix for Machine 2 (64 Bit)
     export WINEPREFIX=${HOME}/wine/wine64_machine_02
