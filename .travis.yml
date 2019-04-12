@@ -365,6 +365,7 @@ install:
 script:
     - ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov
 
+
 after_success:
     - ${CMDPREFIX} coverage report
     - ${CMDPREFIX} codecov
