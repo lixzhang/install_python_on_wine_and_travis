@@ -363,7 +363,7 @@ install:
     - if [[ -f setup.py ]]; then ${CMDPREFIX} ${pip_command} install -e . ; else echo "no setup.py found" ; fi
 
 script:
-    - ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov
+    - if [[ -f setup.py ]]; then ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov ; else echo "no setup.py found" ; fi
 
 
 after_success:
