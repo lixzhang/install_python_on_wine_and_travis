@@ -349,8 +349,9 @@ matrix:
 
 
 install:
+    - chmod +x ./*.sh             # make shellscripts executable
+    - chmod +x ./lib_bash/*.sh    # make shellscript lib executable
     - if [[ ${TRAVIS_OS_NAME} == "linux" ]]; then service xvfb status ; fi
-    - if [[ ${CMDPREFIX} == "wine" ]]; then chmod 755 ./*.sh ; fi
     - if [[ ${CMDPREFIX} == "wine" ]]; then ./install_wine.sh ; fi
     - if [[ ${CMDPREFIX} == "wine" ]]; then ./install_wine_machine.sh ; fi
     - if [[ ${wine_python_version} == "python2" ]]; then ./install_wine_python2_preinstalled.sh ; fi
@@ -360,12 +361,40 @@ install:
     - ${CMDPREFIX} ${python_command} -m pip install --upgrade pip
     - if [[ $TRAVIS_PYTHON_VERSION == pypy3.5-6.0 ]]; then ${CMDPREFIX} ${pip_command} install "pytest-cov==2.6.0"; fi
     - ${CMDPREFIX} ${pip_command} install codecov pytest pytest-pep8 pytest-cov dill
-    - if [[ -f setup.py ]]; then ${CMDPREFIX} ${pip_command} install -e . ; else echo -e "\033[01;31m*** no setup.py found, nothing to install\033[00m" ; fi
+    - if [[ -f setup.py ]]; then export setup_py_found="True" ; else ./lib_bash/lib_color.sh clr_bold clr_red  "*** no setup.py found, nothing to test" ; fi
+    - if [[ "${setup_py_found}" == "True" ]]; then ${CMDPREFIX} ${pip_command} install -e . ; fi
 
 script:
-    - if [[ -f setup.py ]]; then ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov ; else echo -e "\033[01;31m*** no setup.py found, nothing to test\033[00m" ; fi
+    # - if [[ "${setup_py_found}" == "True" ]]; then ${CMDPREFIX} ${pip_command} install ${github_master} --install-option test ; fi  # enable this only, if Your setup.py has a test option
+    - if [[ "${setup_py_found}" == "True" ]]; then ${CMDPREFIX} ${python_command} -m pytest --pep8 --cov ; fi
 
 
 after_success:
     - ${CMDPREFIX} coverage report
     - ${CMDPREFIX} codecov
+
+    # This works for sure - but might expose the secure password within the matrix,
+    # because windows builds need filter_secrets: false at the Moment (2019-04-12)
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install -U twine ; fi
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${pip_command} install wheel ; fi
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} ${python_command} setup.py sdist bdist_wheel ; fi
+    # - if [[ ${deploy_on_pypi} == "True" ]] && [[ -n ${TRAVIS_TAG} ]]; then ${CMDPREFIX} twine upload --repository-url https://upload.pypi.org/legacy/ -u bitranox -p ${pypi_password} dist/* ; fi
+
+
+# the password needs to be encrypted pointing to ${deploy.password}
+# make a backup before adding secrets by travis gem, all comments in the yml files get lost !
+# password needs to be created from the project directory for every repository with ruby gem travis:   travis encrypt "*******" --add deploy.password --org
+# option --org for travis.org, --com for travis.com
+
+deploy:
+  provider: pypi
+  user: put_your_username_here
+  password:
+    secure: put_your_secure_password_here
+  distributions: "sdist bdist_wheel"
+  on:
+    tags: true    # we release only on PyPi on tagged Releases (Release on Github)
+    # python: 3.6  # that would be the usual option, but we can not use it.
+    # we need this, because on projects with windows builds only, we can not build on windows, because of
+    # the filter_secure issue. So we build on WINE, but need somehow to address the matrix include on which to build
+    condition: ${deploy_on_pypi} = "True"
