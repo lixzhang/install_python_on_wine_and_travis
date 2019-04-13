@@ -173,7 +173,7 @@ Install GIT on WINE
     # set Architecture to 64 Bit
     export WINEARCH=""
     # next step is to install Git 64 Bit on the Wine Machine
-    install_win_python2_preinstalled.sh
+    install_wine_git_portable.sh
 
 
 Running Commands
