@@ -1,15 +1,13 @@
 Install wine / python on Linux and/or Travis
 ============================================
 
-|license| |maintenance| |Build Status| |snyk security|
+|license| |maintenance| |Build Status|
 
 .. |license| image:: https://img.shields.io/github/license/webcomics/pywine.svg
    :target: http://en.wikipedia.org/wiki/MIT_License
 .. |maintenance| image:: https://img.shields.io/maintenance/yes/2019.svg
 .. |Build Status| image:: https://travis-ci.org/bitranox/install_python_on_wine_and_travis.svg?branch=master
    :target: https://travis-ci.org/bitranox/install_python_on_wine_and_travis
-.. |snyk security| image:: https://snyk.io/test/github/bitranox/install_python_on_wine_and_travis/badge.svg
-   :target: https://snyk.io/test/github/bitranox/install_python_on_wine_and_travis
 
 - Scripts and travis.yml file to install wine on linux
 
