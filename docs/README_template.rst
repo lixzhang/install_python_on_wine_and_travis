@@ -1,15 +1,7 @@
 Install wine / python on Linux and/or Travis
 ============================================
 
-|license| |maintenance| |Build Status| |snyk security|
-
-.. |license| image:: https://img.shields.io/github/license/webcomics/pywine.svg
-   :target: http://en.wikipedia.org/wiki/MIT_License
-.. |maintenance| image:: https://img.shields.io/maintenance/yes/2019.svg
-.. |Build Status| image:: https://travis-ci.org/bitranox/install_python_on_wine_and_travis.svg?branch=master
-   :target: https://travis-ci.org/bitranox/install_python_on_wine_and_travis
-.. |snyk security| image:: https://snyk.io/test/github/bitranox/install_python_on_wine_and_travis/badge.svg
-   :target: https://snyk.io/test/github/bitranox/install_python_on_wine_and_travis
+.. include:: ./badges_minimal.rst
 
 - Scripts and travis.yml file to install wine on linux
 
@@ -25,7 +17,8 @@ Install wine / python on Linux and/or Travis
 
 - travis .yml to install OsX Python 2.7 and 3.7 builds
 
-Tested under `Linux, OsX, Windows and Wine <https://travis-ci.org/bitranox/install_python_on_wine_and_travis>`_, automatic daily builds  and monitoring
+
+.. include:: ./tested_minimal.rst
 
 ----
 
@@ -38,9 +31,9 @@ Tested under `Linux, OsX, Windows and Wine <https://travis-ci.org/bitranox/insta
 - `Running Commands on Wine`_
 - `Acknowledgements`_
 - `Contribute`_
-- `Report Issues <https://github.com/bitranox/install_python_on_wine_and_travis/blob/master/ISSUE_TEMPLATE.md>`_
-- `Pull Request <https://github.com/bitranox/install_python_on_wine_and_travis/blob/master/PULL_REQUEST_TEMPLATE.md>`_
-- `Code of Conduct <https://github.com/bitranox/install_python_on_wine_and_travis/blob/master/CODE_OF_CONDUCT.md>`_
+- `Report Issues <https://github.com/{repository_slug}/blob/master/ISSUE_TEMPLATE.md>`_
+- `Pull Request <https://github.com/{repository_slug}/blob/master/PULL_REQUEST_TEMPLATE.md>`_
+- `Code of Conduct <https://github.com/{repository_slug}/blob/master/CODE_OF_CONDUCT.md>`_
 - `License`_
 
 ----
@@ -48,16 +41,8 @@ Tested under `Linux, OsX, Windows and Wine <https://travis-ci.org/bitranox/insta
 Installation and Prerequisites
 ------------------------------
 
-Prerequisites when You install on Your local Machine:
-    - Ubuntu Xenial or newer
-    - download all .sh files and the directory lib_bash to Your home directory
-      and make them executable
-    - xvfb Service installed and running for headless machines
+.. include:: ./installation.rst
 
-If You want to install on Travis, just copy the travis.yml and .sh Files as well as the directory lib_bash to
-Your project directory, there should be only minimal adoption needed to the yml file.
-
-You might delete the codecov related entries if You dont have an account on codecov.
 
 Install WINE
 ============
@@ -236,17 +221,12 @@ Running Commands on Wine
 
 Acknowledgements
 ----------------
-
-- special thanks to "uncle bob" Robert C. Martin, especially for his books on "clean code" and "clean architecture"
+.. include:: ./acknowledgment.rst
 
 Contribute
 ----------
-
-I would love for you to fork and send me pull request for this project.
-- `please Contribute <https://github.com/bitranox/install_python_on_wine_and_travis/blob/master/CONTRIBUTING.md>`_
+.. include:: ./contribute.rst
 
 License
 -------
-
-This software is licensed under the `MIT license <http://en.wikipedia.org/wiki/MIT_License>`_
-
+.. include:: ./licence_mit.rst
