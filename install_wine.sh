@@ -17,20 +17,13 @@ clr_bold clr_green "Install WINE on ${linux_codename}"
 
 clr_green "add 386 Architecture"
 retry sudo dpkg --add-architecture i386
-clr_green "add Wine Keys"
-retry wget https://dl.winehq.org/wine-builds/winehq.key
-sudo apt-key add winehq.key
 
-# this does not work - strange !
-# sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ ${linux_codename} main'
-sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
-clr_green "Wine Packages Update"
-retry sudo apt-get update
-clr_green "Wine Packages Install"
-retry sudo apt-get install --install-recommends winehq-${wine_version}
-retry sudo apt-get install -y cabextract
-retry sudo apt-get install -y libxml2
-retry sudo apt-get install -y libpng-dev
+# clr_green "add Wine Keys"
+# retry wget https://dl.winehq.org/wine-builds/winehq.key
+# sudo apt-key add winehq.key
+# sudo apt-add-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ xenial main'
+# clr_green "Wine Packages Update"
+# retry sudo apt-get update
 
 clr_green "Install latest Winetricks"
 sudo rm -f /usr/bin/winetricks
@@ -38,6 +31,16 @@ retry sudo wget --directory-prefix=/usr/bin/ https://raw.githubusercontent.com/W
 sudo chmod +x /usr/bin/winetricks
 retry sudo winetricks -q --self-update
 clr_green "Install latest Winetricks - done"
+
+clr_green "Install Wine ${wine_version}"
+retry sudo apt-get install --install-recommends winehq-${wine_version}
+clr_green "Install Wine cabextract"
+retry sudo apt-get install -y cabextract
+clr_green "Install Wine libxml2"
+retry sudo apt-get install -y libxml2
+clr_green "Install Wine libpng-dev"
+retry sudo apt-get install -y libpng-dev
+
 
 clr_green "done"
 clr_green "******************************************************************************************************************"
